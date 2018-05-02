@@ -38,6 +38,10 @@ $api->version('v1', [
         $api->post('captchas', 'CaptchasController@store')
             ->name('api.captchas.store');
 
+        //第三方登录
+        $api->post('socials/{social_type}/authorization', 'AuthorizationsController@socialStore')
+            ->name('api.socials.authorizations.store');
+
         //需要token验证的接口
         $api->group(['middleware' => 'api.auth'], function ($api) {
             //当前登录用户信息
